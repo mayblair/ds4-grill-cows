@@ -1,11 +1,61 @@
+
+
 document.addEventListener("DOMContentLoaded", () => {
+  
+  if (!localStorage.getItem('optionsClosed')) {
+    // Show the pop-up if it has not been closed before
+    document.getElementById('options_popup').style.display = 'block';
+  }
+
+  // Event listener for closing the pop-up
+  document.getElementById('closePopup').addEventListener('click', function() {
+      // Hide the pop-up
+      document.getElementById('options_popup').style.display = 'none';
+      
+      // Store in localStorage to prevent it from showing again
+      localStorage.setItem('optionsClosed', 'true');
+  });
+  
+  if (!localStorage.getItem('timerOpen')) {
+    // Show the pop-up if it has not been closed before
+    document.getElementById('timer_popup').style.display = 'none';
+  }
+
+  // Event listener for closing the pop-up
+  document.getElementById('openTimer').addEventListener('click', function() {
+      // Hide the pop-up
+      document.getElementById('timer_popup').style.display = 'block';
+      
+      // Store in localStorage to prevent it from showing again
+      localStorage.setItem('timerOpen', 'true');
+  });
+  
+  
   let timerActive = false; // Flag to track if a timer is active
 
-  document.getElementById("startTimer").addEventListener("click", startTimer);
+
+
+  document.getElementById("startTimer").addEventListener("click", () => {
+      startTimer();
+      console.log("started time");
+      // setTimeout(() => {
+      //   window.location.reload(true);
+      // }, 200);
+  });
 
   function reddenPage() {
     document.body.style.backgroundColor = 'red';
   }
+
+  const timerDisplay = document.getElementById("timerDisplay");
+  const encouragementSection = document.getElementById("encouragementSection");
+
+  const encouragementMessages = [
+    "youre so brave",
+    "keep goinnn",
+    " more than halfway there shawty",
+    "Just a little more, you got this!"
+  ];
 
   function startTimer() {
     if (timerActive) {
@@ -16,16 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let timeRemaining = 60;
 
     timerActive = true;
-
-    const timerDisplay = document.getElementById("timerDisplay");
-    const encouragementSection = document.getElementById("encouragementSection");
-
-    const encouragementMessages = [
-      "youre so brave",
-      "keep goinnn",
-      " more than halfway there shawty",
-      "Just a little more, you got this!"
-    ];
 
     let encouragementIndex = 0;
 
@@ -40,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
         encouragementIndex++;
       }
 
-      if (timeRemaining < 0) {
+      if (timeRemaining <= 0) {
         clearInterval(countdown);
         console.log("Take a break!");
         timerDisplay.textContent = "Take a break!";

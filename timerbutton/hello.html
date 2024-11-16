@@ -1,19 +1,43 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <body>
     <style>
       html {
         min-height: 5em;
         min-width: 10em;
         background: rgb(0, 157, 255);
       }
+      progress {
+        border-radius: 7px; 
+        width: 60%;
+        height: 22px;
+        margin-left: 5%;
+        box-shadow: 1px 1px 3px rgba(37, 140, 162, 0.6 );
+      }
+      progress::-webkit-progress-bar {
+        background-color: #DEF1F5;
+        border-radius: 7px;
+      }
+      progress::-webkit-progress-value {
+        background-color: #aa90e8;
+        border-radius: 7px;
+        }
+      
     </style>
-  </head>
-  <body>
-    <h1>Healthy Work Timer</h1>
-    <button id="startTimer">Start Timer</button>
-    <p id="timerDisplay">60</p>
-    <div id="encouragementSection"></div>
+    <h1>Healthy Habits Timer</h1>
     <script src="popup.js"></script>
+    <div id="options_popup">
+      <p>This is a persistent pop-up. You can close it now!</p>
+      <button id="openTimer">Timer Choice</button>
+      <button id="closePopup">Close</button>
+    </div>
+    <div id="timer_popup">
+      <label for="progress_bar">Downloading progress:</label>
+      <progress id="progress_bar" value="30" max="100"> 30% </progress>
+      <button id="startTimer">Start Timer</button>
+      <p id="timerDisplay">60</p>
+      <div id="encouragementSection"></div>
+    </div>
   </body>
 </html>
