@@ -34,14 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
       timeRemaining--;
 
       if (timeRemaining % 20 === 0 && encouragementIndex < encouragementMessages.length) {
-        // Create a new <p> element for the encouragement message
-        const newMessage = document.createElement("p");
-        newMessage.textContent = encouragementMessages[encouragementIndex];
+        // Append the current message to the encouragement section
+        encouragementSection.textContent = encouragementMessages[encouragementIndex] + "\n";
       
-        // Append the new message to the encouragement section
-        encouragementSection.appendChild(newMessage);
-      
-        // Move to the next message
         encouragementIndex++;
       }
 
