@@ -13,33 +13,21 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   // OPTIONS BUTTON
+  document.getElementById('options_popup').style.display = 'block';
+  localStorage.setItem('optionsOpen', 'true');
   // close/open the options popup when options button is chosen
   document.getElementById('options_button').addEventListener('click', () => {
-      document.getElementById('options_popup').style.display = 'none';
-      // Store clicked state in localStorage to save if user navigates away
-      switch(localStorage.getItem('optionsClosed')) {
+      switch(localStorage.getItem('optionsOpen')) {
         case 'true':
-          localStorage.setItem('optionsClosed', 'false');
+          document.getElementById('options_popup').style.display = 'none';
+          localStorage.setItem('optionsOpen', 'false');
           break;
         case 'false':
-          localStorage.setItem('optionsClosed', 'false');
+          document.getElementById('options_popup').style.display = 'block';
+          localStorage.setItem('optionsOpen', 'true');
           break;
-      }
+      };
   });
-  
-  switch(localStorage.getItem('optionsClosed')) {
-    case 'true':
-      localStorage.setItem('optionsClosed', 'false');
-      break;
-    case 'false':
-      localStorage.setItem('optionsClosed', 'true');
-      break;
-  };
-
-  if (!localStorage.getItem('optionsClosed')) {
-    // Show the pop-up if it has not been closed before
-    document.getElementById('options_popup').style.display = 'block';
-  };
 
 
   // TIMER POPUP
@@ -64,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function reddenPage() {
     document.body.style.backgroundColor = 'red';
-  }
+  };
 
   // TIMER PROGRESS BAR 
   // initialize timer
