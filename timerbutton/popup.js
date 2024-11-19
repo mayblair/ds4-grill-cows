@@ -12,18 +12,37 @@ document.addEventListener("DOMContentLoaded", () => {
     "Just a little more, you got this!"
   ];
 
+  // OPTIONS BUTTON
   // close/open the options popup when options button is chosen
-  document.getElementById('closePopup').addEventListener('click', () => {
-      // Hide the pop-up
+  document.getElementById('options_button').addEventListener('click', () => {
       document.getElementById('options_popup').style.display = 'none';
-      // Store in localStorage to prevent it from showing again
-      localStorage.setItem('optionsClosed', 'true');
+      // Store clicked state in localStorage to save if user navigates away
+      switch(localStorage.getItem('optionsClosed')) {
+        case 'true':
+          localStorage.setItem('optionsClosed', 'false');
+          break;
+        case 'false':
+          localStorage.setItem('optionsClosed', 'false');
+          break;
+      }
   });
+  
+  switch(localStorage.getItem('optionsClosed')) {
+    case 'true':
+      localStorage.setItem('optionsClosed', 'false');
+      break;
+    case 'false':
+      localStorage.setItem('optionsClosed', 'true');
+      break;
+  };
+
   if (!localStorage.getItem('optionsClosed')) {
     // Show the pop-up if it has not been closed before
     document.getElementById('options_popup').style.display = 'block';
   };
 
+
+  // TIMER POPUP
   // display timer progress bar when timer choice is chosen
   document.getElementById('openTimer').addEventListener('click', () => {
       document.getElementsByClassName('timer_popup')[0].style.display = 'block';
@@ -47,17 +66,16 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.backgroundColor = 'red';
   }
 
-// TIMER PROGRESS BAR
+  // TIMER PROGRESS BAR 
+  // initialize timer
+  function startTimer() {
+    if (timerActive) {
+      alert("A timer is already running!");
+      return;
+    }
+  };
 
-// initialize timer
-function startTimer() {
-  if (timerActive) {
-    alert("A timer is already running!");
-    return;
-  }
-};
-
-// functionality of timer
+// conditional functionality of timer
   function start_count_down() {
     timerDisplay.textContent = timeRemaining;
     timeRemaining--;

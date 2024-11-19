@@ -25,7 +25,7 @@
       button:hover {
         background-color: #ddcfe9;
       }
-      button:focus {
+      button:active {
         background-color: #553170;
         color: white;
       }
@@ -49,15 +49,15 @@
       progress::-webkit-progress-value {
         background-color: #aa90e8;
         border-radius: 7px;
-        }
+      }
 
     </style>
     <h1>Healthy Habits Timer</h1>
     <script src="popup.js"></script>
     <div id="options_popup">
-      <p>Choose a timer to track your studies!</p>
-      <button id="openTimer">Timer Choice</button>
-      <button id="closePopup">Close</button>
+      <p>Choose a goal to track while you study!</p>
+      <button id="openTimer">Timer</button>
+      <button id="options_button">Options</button>
     </div>
     <div class="timer_popup">
       <progress id="progress_bar" value="30" max="100"> 30%
