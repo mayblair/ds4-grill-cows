@@ -1,9 +1,16 @@
-
-let timeRemaining = 60;
-let timerActive = false; // Flag to track if a timer is active
-
 document.addEventListener("DOMContentLoaded", () => {
 
+  let timeRemaining = 60;
+  let timerActive = false; // Flag to track if a timer is active
+  let encouragementIndex = 0;
+  let timerDisplay = document.getElementById("timerDisplay");
+  const encouragementSection = document.getElementById("encouragementSection");
+  const encouragementMessages = [
+    "You're so brave",
+    "Keep going!!!",
+    "Halfway there, shawty",
+    "Just a little more, you got this!"
+  ];
 
   // close/open the options popup when options button is chosen
   document.getElementById('closePopup').addEventListener('click', () => {
@@ -40,6 +47,16 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.backgroundColor = 'red';
   }
 
+// TIMER PROGRESS BAR
+
+// initialize timer
+function startTimer() {
+  if (timerActive) {
+    alert("A timer is already running!");
+    return;
+  }
+};
+
 // functionality of timer
   function start_count_down() {
     timerDisplay.textContent = timeRemaining;
@@ -59,22 +76,5 @@ document.addEventListener("DOMContentLoaded", () => {
       reddenPage();
       timerActive = false;
     };
-  };
-
-// initialize timer
-  function startTimer() {
-    if (timerActive) {
-      alert("A timer is already running!");
-      return;
-    }
-    const timerDisplay = document.getElementById("timerDisplay");
-    const encouragementSection = document.getElementById("encouragementSection");
-    let encouragementIndex = 0;
-    const encouragementMessages = [
-      "You're so brave",
-      "Keep going!!!",
-      "Halfway there, shawty",
-      "Just a little more, you got this!"
-    ];
   };
 });
