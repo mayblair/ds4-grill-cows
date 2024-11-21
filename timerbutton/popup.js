@@ -1,56 +1,69 @@
-
-let timeRemaining = 60;
-
 document.addEventListener("DOMContentLoaded", () => {
 
-  // if (!localStorage.getItem('optionsClosed')) {
-  //   // Show the pop-up if it has not been closed before
-  //   document.getElementById('options_popup').style.display = 'block';
-  // }
+  let timeRemaining = 60;
+  let timerActive = false; // Flag to track if a timer is active
+  let encouragementIndex = 0;
+  let timerDisplay = document.getElementById("timerDisplay");
+  const encouragementSection = document.getElementById("encouragementSection");
+  const encouragementMessages = [
+    "You're so brave",
+    "Keep going!!!",
+    "Halfway there, shawty",
+    "Just a little more, you got this!"
+  ];
 
-  // // Event listener for closing the pop-up
-  // document.getElementById('closePopup').addEventListener('click', function() {
-  //     // Hide the pop-up
-  //     document.getElementById('options_popup').style.display = 'none';
-      
-  //     // Store in localStorage to prevent it from showing again
-  //     localStorage.setItem('optionsClosed', 'true');
-  // });
-  
-  if (!localStorage.getItem('timerOpen')) {
-    // Show the pop-up if it has not been closed before
-    document.getElementById('timer_popup').style.display = 'none';
-  }
+  // OPTIONS BUTTON
+  document.getElementById('options_popup').style.display = 'block';
+  localStorage.setItem('optionsOpen', 'true');
+  // close/open the options popup when options button is chosen
+  document.getElementById('options_button').addEventListener('click', () => {
+      switch(localStorage.getItem('optionsOpen')) {
+        case 'true':
+          document.getElementById('options_popup').style.display = 'none';
+          localStorage.setItem('optionsOpen', 'false');
+          break;
+        case 'false':
+          document.getElementById('options_popup').style.display = 'block';
+          localStorage.setItem('optionsOpen', 'true');
+          break;
+      };
+  });
 
-  // Event listener for opening the pop-up
-  document.getElementById('openTimer').addEventListener('click', function() {
-      // show the pop-up
-      document.getElementById('timer_popup').style.display = 'block';
-      
+
+  // TIMER POPUP
+  // display timer progress bar when timer choice is chosen
+  document.getElementById('openTimer').addEventListener('click', () => {
+      document.getElementsByClassName('timer_popup')[0].style.display = 'block';
       // Store in localStorage to prevent it from hiding again
       localStorage.setItem('timerOpen', 'true');
   });
+  if (!localStorage.getItem('timerOpen')) {
+    // Show the pop-up if it has not been closed before
+    document.getElementById('timer_popup').style.display = 'none';
+  };
 
-  document.getElementById("timer_popup").style.display = 'none';
-  
-  let timerActive = false; // Flag to track if a timer is active
-
-
+  // event listener for starting time with startTimer button
   document.getElementById("startTimer").addEventListener("click", () => {
       startTimer();
       timerActive = true;
       const countdown = setInterval(start_count_down, 1000); // 1000ms = 1 second
       console.log("started time");
-      // setTimeout(() => {
-      //   window.location.reload(true);
-      // }, 200);
   });
 
   function reddenPage() {
     document.body.style.backgroundColor = 'red';
-  }
+  };
 
+  // TIMER PROGRESS BAR 
+  // initialize timer
+  function startTimer() {
+    if (timerActive) {
+      alert("A timer is already running!");
+      return;
+    }
+  };
 
+// conditional functionality of timer
   function start_count_down() {
     timerDisplay.textContent = timeRemaining;
     timeRemaining--;
@@ -60,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
       encouragementSection.textContent = encouragementMessages[encouragementIndex] + "\n";
     
       encouragementIndex++;
-    }
+    };
 
     if (timeRemaining <= 0) {
       clearInterval(countdown);
@@ -68,26 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
       timerDisplay.textContent = "Take a break!";
       reddenPage();
       timerActive = false;
-    }
-  }
-
-
-  function startTimer() {
-    if (timerActive) {
-      alert("A timer is already running!");
-      return;
-    }
-    const timerDisplay = document.getElementById("timerDisplay");
-    const encouragementSection = document.getElementById("encouragementSection");
-
-    const encouragementMessages = [
-      "youre so brave",
-      "keep goinnn",
-      " more than halfway there shawty",
-      "Just a little more, you got this!"
-    ];
-
-    let encouragementIndex = 0;
-  
-  }
+    };
+  };
 });
