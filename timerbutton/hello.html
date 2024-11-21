@@ -5,8 +5,12 @@
     <style>
       html {
         min-height: 5em;
-        min-width: 20em;
+        min-width: 25em;
         background: #eae8ec;
+      }
+      h1 {
+        text-align: center;
+        font-size: 12;
       }
       .timer_popup {
         margin: 0px 0px;
@@ -51,8 +55,11 @@
       }
 
     </style>
-    <h1 style="text-align:center;">Healthy Habits Timer</h1>
+    </body>
     <script src="popup.js"></script>
+    <div id = "heading">
+      <h1><button style="margin-left:0;" id="close_button">Exit</button></span> Habits Timer </span></h1>
+    </div>
     <button id="options_button">Options</button>
     <div id="options_popup">
       <p>Choose a goal to track while you study!</p>
@@ -67,8 +74,5 @@
       <p id="timer_num">60</p>
       <div id="encouragementSection"></div>
     </div>
-
-    <button id="close_timer">Exit</button>
-
   </body>
 </html>
