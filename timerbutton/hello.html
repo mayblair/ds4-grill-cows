@@ -61,6 +61,13 @@
       <h1><button style="margin-left:0;" id="close_button">Exit</button></span> Habits Timer </span></h1>
     </div>
     <button id="options_button">Options</button>
+    <form action="/action_page.php">
+      <label for="fname">Working duration</label><br>
+      <input type="text" id="wtime" name="wtime" value="60"><br>
+      <label for="lname">Break Duration:</label><br>
+      <input type="text" id="btime" name="btime" value="10"><br><br>
+      <input type="submit" value="Save">
+    </form> 
     <div id="options_popup">
       <p>Choose a goal to track while you study!</p>
       <button id="openTimer">Timer</button>

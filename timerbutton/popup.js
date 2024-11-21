@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const total_time = 60;
+  const total_time = document.getElementById('wtime').value;
   let timeRemaining = 60;
   let timerActive = false; // Flag to track if a timer is active
   let encouragementIndex = 0;
