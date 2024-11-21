@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let encouragementIndex = 0;
   let timer_num = document.getElementById("timer_num");
   const timer_bar = document.getElementById("progress_bar");
-  const encouragementSection = document.getElementById("encouragementSection");
+  const bottom_text = document.getElementById("bottom_text");
   const encouragementMessages = [
     "You're so brave",
     "Keep going!!!",
@@ -63,8 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // initialize timer
   function startTimer() {
     if (timerActive) {
-      alert("A timer is already running!");
-      return;
+      bottom_text.textContent = "A timer is already running!";
     } else {
       timerActive = true;
       const countdown = setInterval(start_count_down, 1000); // 1000ms = 1 second
@@ -79,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (timeRemaining % 20 === 0 && encouragementIndex < encouragementMessages.length) {
       // Append the current message to the encouragement section
-      encouragementSection.textContent = encouragementMessages[encouragementIndex] + "\n";
+      bottom_text.textContent = encouragementMessages[encouragementIndex] + "\n";
     
       encouragementIndex++;
     };
@@ -92,4 +91,5 @@ document.addEventListener("DOMContentLoaded", () => {
       timerActive = false;
     };
   };
+
 });
