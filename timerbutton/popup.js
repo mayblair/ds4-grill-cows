@@ -18,15 +18,15 @@ document.addEventListener("DOMContentLoaded", () => {
   localStorage.setItem('optionsOpen', 'true');
   // close/open the options popup when options button is clicked
   document.getElementById('options_button').addEventListener('click', () => {
-      switch(localStorage.getItem('optionsOpen')) {
-        case 'true':
-          document.getElementById('options_popup').style.display = 'none';
-          localStorage.setItem('optionsOpen', 'false');
-          break;
-        case 'false':
-          document.getElementById('options_popup').style.display = 'block';
-          localStorage.setItem('optionsOpen', 'true');
-          break;
+    switch(localStorage.getItem('optionsOpen')) {
+      case 'true':
+        document.getElementById('options_popup').style.display = 'none';
+        localStorage.setItem('optionsOpen', 'false');
+        break;
+      case 'false':
+        document.getElementById('options_popup').style.display = 'block';
+        localStorage.setItem('optionsOpen', 'true');
+        break;
       };
   });
 
@@ -34,25 +34,25 @@ document.addEventListener("DOMContentLoaded", () => {
   // DISPLAY POPUP TIMER BUTTON
   // display timer progress bar when timer choice is chosen
   document.getElementById('openTimer').addEventListener('click', () => {
-      document.getElementsByClassName('timer_popup')[0].style.display = 'block';
-      // Store in localStorage to prevent it from hiding again
-      localStorage.setItem('timerOpen', 'true');
+    document.getElementsByClassName('timer_popup')[0].style.display = 'block';
+    // Store in localStorage to prevent it from hiding again
+    localStorage.setItem('timerOpen', 'true');
   });
   if (!localStorage.getItem('timerOpen')) {
     // Show the pop-up if it has not been closed before
     document.getElementById('timer_popup').style.display = 'none';
   };
 
+  document.getElementById("close_button").addEventListener("click", () => {
+    window.close();
+  });
+
+
   // START TIMER BUTTON
   // event listener for starting time with startTimer button
   document.getElementById("startTimer").addEventListener("click", () => {
       startTimer();
       console.log("started time");
-  });
-
-  // Close Extension functionality. 
-  document.getElementById('close_button').addEventListener('click', function() {
-    window.close(); // Closes the popup window
   });
 
   function reddenPage() {
@@ -67,8 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     } else {
       timerActive = true;
-      setInterval(start_count_down, 1000); // 1000ms = 1 second
-    }
+      const countdown = setInterval(start_count_down, 1000); // 1000ms = 1 second
+    };
   };
 
   // conditional functionality of timer
