@@ -50,6 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("started time");
   });
 
+  // Close Extension functionality. 
+  document.getElementById('close_button').addEventListener('click', function() {
+    window.close(); // Closes the popup window
+  });
+
   function reddenPage() {
     document.body.style.backgroundColor = 'red';
   };
