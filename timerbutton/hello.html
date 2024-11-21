@@ -7,7 +7,6 @@
         min-height: 5em;
         min-width: 20em;
         background: #eae8ec;
-        text-align: center;
       }
       .timer_popup {
         margin: 0px 0px;
@@ -52,7 +51,7 @@
       }
 
     </style>
-    <h1>Healthy Habits Timer</h1>
+    <h1 style="text-align:center;">Healthy Habits Timer</h1>
     <script src="popup.js"></script>
     <button id="options_button">Options</button>
     <div id="options_popup">
@@ -60,12 +59,12 @@
       <button id="openTimer">Timer</button>
     </div>
     <div class="timer_popup">
-      <progress id="progress_bar" value="30" max="100"> 30%
+      <progress id="progress_bar" value="0" max="100"> 0%
         <!-- cant get label to display upon hover -->
         <!-- <div class="progress_label">Progress so far:</div> -->
       </progress>
       <button id="startTimer">Start Timer</button>
-      <p id="timerDisplay">60</p>
+      <p id="timer_num">60</p>
       <div id="encouragementSection"></div>
     </div>
   </body>

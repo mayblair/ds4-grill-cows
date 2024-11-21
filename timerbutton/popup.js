@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-
+  const total_time = 60;
   let timeRemaining = 60;
   let timerActive = false; // Flag to track if a timer is active
   let encouragementIndex = 0;
-  let timerDisplay = document.getElementById("timerDisplay");
+  let timer_num = document.getElementById("timer_num");
+  const timer_bar = document.getElementById("progress_bar");
   const encouragementSection = document.getElementById("encouragementSection");
   const encouragementMessages = [
     "You're so brave",
@@ -61,13 +62,14 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     } else {
       timerActive = true;
-      const countdown = setInterval(start_count_down, 1000); // 1000ms = 1 second
+      setInterval(start_count_down, 1000); // 1000ms = 1 second
     }
   };
 
   // conditional functionality of timer
   function start_count_down() {
-    timerDisplay.textContent = timeRemaining;
+    timer_num.textContent = timeRemaining;
+    timer_bar.value = total_time - timeRemaining;
     timeRemaining--;
 
     if (timeRemaining % 20 === 0 && encouragementIndex < encouragementMessages.length) {
@@ -80,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (timeRemaining <= 0) {
       clearInterval(countdown);
       console.log("Take a break!");
-      timerDisplay.textContent = "Take a break!";
+      timer_num.textContent = "Take a break!";
       reddenPage();
       timerActive = false;
     };
