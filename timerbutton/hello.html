@@ -57,7 +57,7 @@
         border-radius: 7px;
       }
       progress::-webkit-progress-value {
-        background-color: #aa90e8;
+        background-color: #785bbb;
         border-radius: 7px;
       }
 
@@ -65,18 +65,25 @@
     </body>
     <script src="popup.js"></script>
     <h1><button id="options_button">Options</button></span> Healthy Habits Timer</span> <button id="close_button">Exit</button></h1>
-    
     <div id="options_popup">
+      <label for="work">Work for </label>
+      <input type="text" id="work" name="work" value="20" style="width: 20px"> minutes<br><br>
+      <label for="break">Break every </label>
+      <input type="text" id="break" name="break" value="10" style="width: 20px"> minutes <br><br>
+      <label for="breaktimemin">Each break lasts </label>
+      <input type="text" id="btimemin" name="btimemin" value="1" style="width: 20px"> minutes and
+      <label for="breaktimesec"></label>
+      <input type="text" id="btimesec" name="btimesec" value="30" style="width: 20px"> seconds<br>
       <p>Choose a goal to track while you study!</p>
-      <button id="openTimer">Timer</button>
+      <!-- <button id="openTimer">Timer</button> -->
     </div>
-    <div class="timer_popup" style="text-align: center;">
+    <div id="timer_popup" style="text-align: center;">
       <progress id="progress_bar" value="0" max="100"> 0%
         <!-- cant get label to display upon hover -->
         <!-- <div class="progress_label">Progress so far:</div> -->
       </progress>
       <button id="startTimer">Start Timer</button>
-      <p id="timer_num">60</p>
+      <p id="timer_num">0</p>
       <h2" id="bottom_text"></h2>
     </div>
   </body>
