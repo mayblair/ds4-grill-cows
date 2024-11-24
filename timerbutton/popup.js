@@ -34,15 +34,20 @@ document.addEventListener("DOMContentLoaded", () => {
   // OPTIONS BUTTON
   document.getElementById('options_popup').style.display = 'block';
   localStorage.setItem('optionsOpen', 'true');
+  document.getElementById('options_button').classList.toggle('active');
+
   // close/open the options popup when options button is clicked
   document.getElementById('options_button').addEventListener('click', () => {
     switch(localStorage.getItem('optionsOpen')) {
       case 'true':
+        document.getElementById('options_button').classList.toggle('active');
         document.getElementById('options_popup').style.display = 'none';
         localStorage.setItem('optionsOpen', 'false');
         break;
       case 'false':
+        document.getElementById('options_button').classList.toggle('active');
         document.getElementById('options_popup').style.display = 'block';
+        // document.getElementById('options_button').style.backgroundColor = "553170 !important";
         localStorage.setItem('optionsOpen', 'true');
         bottom_text.textContent = "";
         break;
