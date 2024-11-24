@@ -18,9 +18,12 @@
         /* font-size: 10; */
         margin-top: 5px;
       }
+      h3 {
+        text-align: center;
+      }
       .timer_popup {
         margin: 0px 0px;
-        text-align: left;
+        text-align: center;
         display: none;
       }
       button {
@@ -67,13 +70,11 @@
     <h1><button id="options_button">Options</button></span> Healthy Habits Timer</span> <button id="close_button">Exit</button></h1>
     <div id="options_popup">
       <label for="work">Work for </label>
-      <input type="text" id="work" name="work" value="20" style="width: 20px"> minutes<br><br>
+      <input type="text" id="wtimemin" name="wtimemin" value="20" style="width: 20px"> minutes and
+      <input type="text" id="wtimesec" name="wtimesec" value="0" style="width: 20px"> seconds <br><br>
       <label for="break">Break every </label>
-      <input type="text" id="break" name="break" value="10" style="width: 20px"> minutes <br><br>
-      <label for="breaktimemin">Each break lasts </label>
-      <input type="text" id="btimemin" name="btimemin" value="1" style="width: 20px"> minutes and
-      <label for="breaktimesec"></label>
-      <input type="text" id="btimesec" name="btimesec" value="30" style="width: 20px"> seconds<br>
+      <input type="text" id="btimemin" name="btimemin" value="5" style="width: 20px"> minutes and
+      <input type="text" id="btimesec" name="btimesec" value="0" style="width: 20px"> seconds <br><br>
       <p>Choose a goal to track while you study!</p>
       <!-- <button id="openTimer">Timer</button> -->
     </div>
@@ -82,9 +83,10 @@
         <!-- cant get label to display upon hover -->
         <!-- <div class="progress_label">Progress so far:</div> -->
       </progress>
-      <button id="startTimer">Start Timer</button>
-      <p id="timer_num">0</p>
-      <h2" id="bottom_text"></h2>
+      <h2 id="break_text"></h2>
+      <h3> <button id="start_work">Start Work</button> </span> </span> <button id="restart_timer">Restart Timer</button> </h3>
+      <p id="timer_num"></p>
+      <h2 id="bottom_text"></h2>
     </div>
   </body>
 </html>
