@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("restart_timer").addEventListener("click", () => {
     document.getElementById("restart_timer").textContent = "Restart Timer";
     document.getElementById("restart_timer").style.display = 'inline';
-    document.getElementById("start_break").style.display = 'inline';
     document.getElementById("start_work").style.display = 'none';
     startTimer();
   });
@@ -99,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // initialize timer
   function startTimer() {
     if (localStorage.getItem('optionsOpen') == 'true') {
+      document.getElementById("start_break").style.display = 'inline';
       timerActive = true;
       colorPage("white");
       // reset progress/timer to reflect new input options
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
         countdown = setInterval(start_count_down, 1000); // 1000ms = 1 second
         console.log("started time");
       };
-    } else if (timerActive & localStorage.getItem('optionsOpen') == 'false') {
+    } else if (localStorage.getItem('optionsOpen') == 'false') {
       bottom_text.textContent = "A timer is already running!\nOpen options to start a new timer";
     } else {
       console.log("confused");
