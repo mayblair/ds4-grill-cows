@@ -134,8 +134,8 @@ document.addEventListener("DOMContentLoaded", () => {
             (time_remaining % 60).toString() + " seconds";
       timer_bar.value = (total_time - time_remaining) / total_time * 100;
       // not the beginning of the timer and time for a break
-      console.log(timer_bar.value);
-      if (timer_bar.value != 0 && time_remaining % break_total == 0 && 
+      console.log((total_time - time_remaining) % break_total);
+      if (timer_bar.value != 0 && (total_time - time_remaining) % break_total == 0 && 
         message_index < start_break_messages.length) {
         startBreak();
       // last message 
@@ -150,6 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
         clearInterval(countdown);
         console.log("Finished!");
         document.getElementById("start_work").style.display = 'none';
+        document.getElementById("start_break").style.display = 'none';
         colorPage("purple");
         timerActive = false;
         breakActive = false;
@@ -168,6 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
     breakActive = true;
     timerActive = false;
     break_so_far = 0;
+    print()
     document.getElementById("start_work").style.display = 'inline';
     colorPage("purple");
     console.log("started break");
