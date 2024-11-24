@@ -1,6 +1,6 @@
 {
-  "name": "Healthy Work Timer",
-  "description": "Promotes healthy work habits with reminders.",
+  "name": "Healthy Habits Tracker",
+  "description": "Promote healthy work habits with tracking and reminders",
   "version": "1.0",
   "manifest_version": 3,
   "action": {
