@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("restart_timer").addEventListener("click", () => {
     document.getElementById("restart_timer").textContent = "Restart Timer";
     document.getElementById("restart_timer").style.display = 'inline';
+    document.getElementById("start_break").style.display = 'inline';
     document.getElementById("start_work").style.display = 'none';
     startTimer();
   });
@@ -73,9 +74,16 @@ document.addEventListener("DOMContentLoaded", () => {
     resumeTimer();
   });
 
+  document.getElementById("start_break").style.display = 'none';
+  // event listener for starting time with startTimer button
+  document.getElementById("start_break").addEventListener("click", () => {
+    startBreak();
+  });
+
   function resumeTimer() {
     if (breakActive) {
       document.getElementById("start_work").style.display = 'none';
+      document.getElementById("start_break").style.display = 'inline';
       breakActive = false;
       timerActive = true;
       bottom_text.textContent = end_break_messages[message_index];
@@ -97,6 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
       clearInterval(countdown);
       clearInterval(breaktime);
       break_text.textContent = "";
+      timer_bar.value = 0;
       work_min = document.getElementById('wtimemin').value * 60;
       total_time = work_min + parseInt(document.getElementById('wtimesec').value);
       break_min = document.getElementById('btimemin').value * 60;
@@ -128,14 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(timer_bar.value);
       if (timer_bar.value != 0 && time_remaining % break_total == 0 && 
         message_index < start_break_messages.length) {
-        // display take a break message
-        bottom_text.textContent = start_break_messages[message_index];
-        breakActive = true;
-        timerActive = false;
-        break_so_far = 0;
-        document.getElementById("start_work").style.display = 'inline';
-        colorPage("purple");
-        console.log("started break");
+        startBreak();
       // last message 
       };
       time_remaining--;
@@ -144,20 +146,32 @@ document.addEventListener("DOMContentLoaded", () => {
       };
       // end of timer/progress bar!
       if (time_remaining < 0) {
-        bottom_text.textContent = "YOU DID IT!!!! WELL DONE :)";
+        bottom_text.textContent = "YOU DID IT!!!! WELL DONE :)\n Take a walk, eat, drink water, and come back to your computer in a while!";
         clearInterval(countdown);
         console.log("Finished!");
         document.getElementById("start_work").style.display = 'none';
         colorPage("purple");
         timerActive = false;
+        breakActive = false;
       };
     } else if (breakActive){
       break_text.textContent = "Break so far: " + (Math.floor(break_so_far / 60)).toString() + " minutes " +
         (break_so_far % 60).toString() + " seconds";
       break_so_far++;
     };
-    
   };
+
+  function startBreak() {
+    document.getElementById("start_break").style.display = 'none';
+    // display take a break message
+    bottom_text.textContent = start_break_messages[message_index];
+    breakActive = true;
+    timerActive = false;
+    break_so_far = 0;
+    document.getElementById("start_work").style.display = 'inline';
+    colorPage("purple");
+    console.log("started break");
+    };
 
 });
 
