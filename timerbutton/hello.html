@@ -1,18 +1,78 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <body>
     <style>
       html {
         min-height: 5em;
-        min-width: 10em;
-        background: salmon;
+        min-width: 25em;
+        background: #eae8ec;
       }
+      h1 {
+        text-align: center;
+        font-size: 12;
+      }
+      .timer_popup {
+        margin: 0px 0px;
+        text-align: left;
+        display: none;
+      }
+      button {
+        background-color: white;
+        color: black;
+        border: 2px solid #553170;
+        padding: 5px 8px;
+        margin: 5px 10px;
+        border-radius: 12px;
+      }
+      button:hover {
+        background-color: #ddcfe9;
+      }
+      button:active {
+        background-color: #553170;
+        color: white;
+      }
+      progress {
+        border-radius: 7px; 
+        width: 60%;
+        height: 22px;
+        margin: 5px 5px;
+        box-shadow: 1px 1px 3px rgba(37, 140, 162, 0.6);
+      }
+      progress .progress_label{
+        display: none;
+      }
+      progress:hover .progress_label{
+        display: block;
+      }
+      progress::-webkit-progress-bar {
+        background-color: #DEF1F5;
+        border-radius: 7px;
+      }
+      progress::-webkit-progress-value {
+        background-color: #aa90e8;
+        border-radius: 7px;
+      }
+
     </style>
-  </head>
-  <body>
-    <h1>Healthy Work Timer</h1>
-    <button id="startTimer">Start Timer</button>
-    <p id="timerDisplay">20</p>
+    </body>
     <script src="popup.js"></script>
+    <div id = "heading">
+      <h1><button style="margin-left:0;" id="close_button">Exit</button></span> Habits Timer </span></h1>
+    </div>
+    <button id="options_button">Options</button>
+    <div id="options_popup">
+      <p>Choose a goal to track while you study!</p>
+      <button id="openTimer">Timer</button>
+    </div>
+    <div class="timer_popup">
+      <progress id="progress_bar" value="0" max="100"> 0%
+        <!-- cant get label to display upon hover -->
+        <!-- <div class="progress_label">Progress so far:</div> -->
+      </progress>
+      <button id="startTimer">Start Timer</button>
+      <p id="timer_num">60</p>
+      <div id="encouragementSection"></div>
+    </div>
   </body>
 </html>
