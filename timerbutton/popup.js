@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("restart_timer").addEventListener("click", () => {
     document.getElementById("restart_timer").textContent = "Restart Timer";
     document.getElementById("restart_timer").style.display = 'inline';
-    document.getElementById("start_work").style.display = 'inline';
+    document.getElementById("start_work").style.display = 'none';
     startTimer();
   });
 
@@ -75,10 +75,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function resumeTimer() {
     if (breakActive) {
+      document.getElementById("start_work").style.display = 'none';
       breakActive = false;
       timerActive = true;
       bottom_text.textContent = end_break_messages[message_index];
       break_text.textContent = "";
+      colorPage("white");
       message_index++;
     } else {
       console.log("break not active")
@@ -90,6 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function startTimer() {
     if (localStorage.getItem('optionsOpen') == 'true') {
       timerActive = true;
+      colorPage("white");
       // reset progress/timer to reflect new input options
       clearInterval(countdown);
       clearInterval(breaktime);
@@ -98,11 +101,13 @@ document.addEventListener("DOMContentLoaded", () => {
       total_time = work_min + parseInt(document.getElementById('wtimesec').value);
       break_min = document.getElementById('btimemin').value * 60;
       break_total = break_min + parseInt(document.getElementById('btimesec').value);
+      break_so_far = 0;
       time_remaining = total_time;
       if (total_time <= break_total) {
         bottom_text.textContent = "Total time must be longer than break intervals";
       } else {
         timerActive = true;
+        bottom_text.textContent = "";
         countdown = setInterval(start_count_down, 1000); // 1000ms = 1 second
         console.log("started time");
       };
@@ -119,7 +124,6 @@ document.addEventListener("DOMContentLoaded", () => {
       timer_num.textContent = (Math.floor(time_remaining / 60)).toString() + " minutes " +
             (time_remaining % 60).toString() + " seconds";
       timer_bar.value = (total_time - time_remaining) / total_time * 100;
-      time_remaining--;
       // not the beginning of the timer and time for a break
       console.log(timer_bar.value);
       if (timer_bar.value != 0 && time_remaining % break_total == 0 && 
@@ -128,19 +132,23 @@ document.addEventListener("DOMContentLoaded", () => {
         bottom_text.textContent = start_break_messages[message_index];
         breakActive = true;
         timerActive = false;
-        // breaktime = setInterval(start_break_time, 1000); // 1000ms = 1 second
+        break_so_far = 0;
+        document.getElementById("start_work").style.display = 'inline';
+        colorPage("purple");
         console.log("started break");
       // last message 
-      } else if (message_index > start_break_messages.length) {
+      };
+      time_remaining--;
+      if (message_index > start_break_messages.length) {
         message_index = 0
       };
       // end of timer/progress bar!
-      if (time_remaining <= 0) {
+      if (time_remaining < 0) {
         bottom_text.textContent = "YOU DID IT!!!! WELL DONE :)";
         clearInterval(countdown);
-        console.log("Take a break!");
-        timer_num.textContent = "Take a break!";
-        colorPage();
+        console.log("Finished!");
+        document.getElementById("start_work").style.display = 'none';
+        colorPage("purple");
         timerActive = false;
       };
     } else if (breakActive){
@@ -151,11 +159,12 @@ document.addEventListener("DOMContentLoaded", () => {
     
   };
 
-  // function start_break_time {
-    
-  // }
 });
 
-  function colorPage() {
-    document.body.style.backgroundColor = "#c5bbdf";
+  function colorPage(color) {
+    if (color == "purple") {
+      document.body.style.backgroundColor = "#c5bbdf";
+    } else if (color == "white") {
+      document.body.style.backgroundColor = "#eae8ec";
+    };
   };
