@@ -5,21 +5,20 @@
     <style>
       html {
         min-height: 5em;
-        min-width: 30em;
+        min-width: 25em;
         background: #eae8ec;
+        font-size: 110%;
       }
       h1 {
         text-align: center;
-        /* font-size: 10; */
+        font-size: 160%;
         margin-top: 5px;
+        display: inline;
       }
       h2 {
         text-align: center;
-        /* font-size: 10; */
+        font-size: 110%;
         margin-top: 5px;
-      }
-      h3 {
-        text-align: center;
       }
       .timer_popup {
         margin: 0px 0px;
@@ -28,12 +27,13 @@
       }
       button {
         background-color: white;
-        font-size: 8;
         color: black;
         border: 2px solid #553170;
         padding: 5px 8px;
         margin: 15px 15px 5px 5px;
         border-radius: 12px;
+        text-align: center;
+        /* font-size: 110%; */
       }
       button:hover {
         background-color: #ddcfe9;
@@ -48,6 +48,9 @@
         height: 22px;
         margin: 5px 5px;
         box-shadow: 1px 1px 3px rgba(37, 140, 162, 0.6);
+      }
+      .heading {
+        display: inline-block;
       }
       progress .progress_label{
         display: none;
@@ -67,15 +70,19 @@
     </style>
     </body>
     <script src="popup.js"></script>
-    <h1><button id="options_button">Options</button></span> Healthy Habits Timer</span> <button id="close_button">Exit</button></h1>
+    <div id="heading" style="text-align: center;">
+      <span><button id="options_button">Options</button></span>
+      <span><h1>Healthy Habits Timer</h1></span>
+      <span><button id="close_button">Exit</button></span>
+   </div>
     <div id="options_popup">
+      <p>Enter your work plan!</p>
       <label for="work">Work for </label>
       <input type="text" id="wtimemin" name="wtimemin" value="20" style="width: 20px"> minutes and
       <input type="text" id="wtimesec" name="wtimesec" value="0" style="width: 20px"> seconds <br><br>
       <label for="break">Break every </label>
       <input type="text" id="btimemin" name="btimemin" value="5" style="width: 20px"> minutes and
       <input type="text" id="btimesec" name="btimesec" value="0" style="width: 20px"> seconds <br><br>
-      <p>Choose a goal to track while you study!</p>
       <!-- <button id="openTimer">Timer</button> -->
     </div>
     <div id="timer_popup" style="text-align: center;">
@@ -84,7 +91,7 @@
         <!-- <div class="progress_label">Progress so far:</div> -->
       </progress>
       <h2 id="break_text"></h2>
-      <h3> <button id="start_work">Start Work</button> </span> </span> <button id="restart_timer">Restart Timer</button> </h3>
+      <button id="start_work">Resume Working</button> <span> </span> <button id="restart_timer">Restart Timer</button>
       <p id="timer_num"></p>
       <h2 id="bottom_text"></h2>
     </div>
