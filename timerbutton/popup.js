@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("restart_timer").addEventListener("click", () => {
     document.getElementById("restart_timer").textContent = "Restart Timer";
     document.getElementById("restart_timer").style.display = 'inline';
-    document.getElementById("start_break").style.display = 'inline';
     document.getElementById("start_work").style.display = 'none';
     startTimer();
   });
@@ -99,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // initialize timer
   function startTimer() {
     if (localStorage.getItem('optionsOpen') == 'true') {
+      document.getElementById("start_break").style.display = 'inline';
       timerActive = true;
       colorPage("white");
       // reset progress/timer to reflect new input options
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
         countdown = setInterval(start_count_down, 1000); // 1000ms = 1 second
         console.log("started time");
       };
-    } else if (timerActive & localStorage.getItem('optionsOpen') == 'false') {
+    } else if (localStorage.getItem('optionsOpen') == 'false') {
       bottom_text.textContent = "A timer is already running!\nOpen options to start a new timer";
     } else {
       console.log("confused");
@@ -134,8 +134,8 @@ document.addEventListener("DOMContentLoaded", () => {
             (time_remaining % 60).toString() + " seconds";
       timer_bar.value = (total_time - time_remaining) / total_time * 100;
       // not the beginning of the timer and time for a break
-      console.log(timer_bar.value);
-      if (timer_bar.value != 0 && time_remaining % break_total == 0 && 
+      console.log((total_time - time_remaining) % break_total);
+      if (timer_bar.value != 0 && (total_time - time_remaining) % break_total == 0 && 
         message_index < start_break_messages.length) {
         startBreak();
       // last message 
@@ -150,6 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
         clearInterval(countdown);
         console.log("Finished!");
         document.getElementById("start_work").style.display = 'none';
+        document.getElementById("start_break").style.display = 'none';
         colorPage("purple");
         timerActive = false;
         breakActive = false;
@@ -168,6 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
     breakActive = true;
     timerActive = false;
     break_so_far = 0;
+    print()
     document.getElementById("start_work").style.display = 'inline';
     colorPage("purple");
     console.log("started break");
